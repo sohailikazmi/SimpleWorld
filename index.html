@@ -189,11 +189,6 @@
       const fileInput = document.getElementById('fileInput');
       const output = document.getElementById('output');
 
-      if (!fileInput.files.length) {
-        output.textContent = 'Please select a text file.';
-        return;
-      }
-
       const file = fileInput.files[0];
       const text = await file.text();
 
