@@ -160,5 +160,34 @@
       pdf.save('picture.pdf');
     });
   </script>
+  <h1>Text to PDF Converter</h1>
+  <input type="file" id="fileInput" accept=".txt">
+  <button onclick="convertToPDF()">Convert to PDF</button>
+  <div id="output"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script>
+    async function convertToPDF() {
+      const fileInput = document.getElementById('fileInput');
+      const output = document.getElementById('output');
+
+      if (!fileInput.files.length) {
+        output.textContent = 'Please select a text file.';
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const text = await file.text();
+
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF();
+
+      const lines = pdf.splitTextToSize(text, 180); // Wrap text to fit page width
+      pdf.text(lines, 10, 10);
+
+      pdf.save(`${file.name.replace('.txt', '')}.pdf`);
+      output.textContent = 'PDF generated successfully!';
+    }
+  </script>
 </body>
 </html>
