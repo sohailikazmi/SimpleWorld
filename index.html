@@ -45,6 +45,25 @@
       background: #ccc;
       cursor: not-allowed;
     }
+      /* Keyframes for animation */
+    @keyframes moveAndScale {
+      0% {
+        transform: translateX(0) scale(1);
+      }
+      50% {
+        transform: translateX(100px) scale(1.2);
+      }
+      100% {
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    /* Styling and animation */
+    .animated-image {
+      width: 200px;
+      height: auto;
+      animation: moveAndScale 3s infinite ease-in-out;
+    }
   </style>
 </head>
 <body>
